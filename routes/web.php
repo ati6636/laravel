@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,6 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/laravel', function () {
-    return view('welcome');
-});
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -28,4 +24,24 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/laravel', function () {
+    return view('welcome');
+});
+
+/*
+|--------------------------------------------------------------------------
+|
+FrontEnd
+Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/',[HomeController::class,'index'])->name('home');
+
+/*
+|--------------------------------------------------------------------------
+|
+BackEnd
+Admin Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/admin', [AdminHomeController::class,'index'])->name('admin.home');
