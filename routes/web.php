@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +45,20 @@ BackEnd
 Admin Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/admin', [AdminHomeController::class,'index'])->name('admin.home');
+Route::prefix('admin')->middleware('auth')->group (function(){
+
+  Route::get('/', [AdminHomeController::class,'index'])->name('admin.home');
+  Route::get('login', [AdminHomeController::class,'login'])->name('admin.login');
+  Route::post('login', [AdminHomeController::class,'loginPost'])->name('admin.login.post');
+  Route::get('logout', [AdminHomeController::class,'logout'])->name('admin.logout');
+
+  Route::prefix('category')->group(function(){
+    Route::get('/',[CategoryController::class,'index'])->name('admin_category');
+    Route::get('add',[CategoryController::class,'add'])->name('admin_category_add');
+    Route::get('update',[CategoryController::class,'update'])->name('admin_category_update');
+    Route::get('delete',[CategoryController::class,'destroy'])->name('admin_category_delete');
+    Route::get('show',[CategoryController::class,'show'])->name('admin_category_show');
+
+    });
+
+});
