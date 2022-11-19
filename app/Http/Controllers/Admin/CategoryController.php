@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -26,9 +27,30 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add()
     {
-        //
+        $categories = DB::table('categories')->where('parent_id',0)->get();
+
+        return view('admin.category_add', ['categories' => $categories]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request  $request)
+    {
+         DB::table('categories')->insert([
+            'parent_id' => $request->parent_id,
+            'title' => $request->title,
+            'keywords' => $request->keywords,
+            'description' => $request->description,
+            'slug' => Str::slug($request->title),
+            'status' => $request->status,
+            'created_at' => now(),
+        ]);
+        return redirect()->route('admin_category');
     }
 
     /**
@@ -82,8 +104,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category,$id)
     {
-        //
+        $deletedCategory = DB::table('categories')->delete($id);
+        return redirect()->route('admin_category');
     }
 }
