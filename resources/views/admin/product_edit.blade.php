@@ -60,7 +60,7 @@
                                   <div class="row mb-3">
                                       <label for="keywords" class="col-sm-2 col-form-label">Keywords</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="text" name="keywords" id="keywords" value="{{$products->title}}">
+                                          <input class="form-control" type="text" name="keywords" id="keywords" value="{{$products->keywords}}">
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -68,7 +68,7 @@
                                   <div class="row mb-3">
                                       <label for="description" class="col-sm-2 col-form-label">Description</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="text" name="description" id="description" value="{{$products->title}}">
+                                          <input class="form-control" type="text" name="description" id="description" value="{{$products->description}}">
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -76,15 +76,15 @@
                                   <div class="row mb-3">
                                       <label for="price" class="col-sm-2 col-form-label">Price</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="number" name="price" id="price" value="{{$products->title}}">
+                                          <input class="form-control" type="number" name="price" id="price" value="{{$products->price}}">
                                       </div>
                                   </div>
                                   <!-- end row -->
 
                                   <div class="row mb-3">
-                                      <label for="quantitiy" class="col-sm-2 col-form-label">Quantitiy</label>
+                                      <label for="quantity" class="col-sm-2 col-form-label">Quantitiy</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="number" name="quantitiy" id="quantitiy" value="{{$products->title}}">
+                                          <input class="form-control" type="number" name="quantity" id="quantity" value="{{$products->quantity}}">
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -92,7 +92,7 @@
                                   <div class="row mb-3">
                                       <label for="minquantity" class="col-sm-2 col-form-label">Minimum Quantitiy</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="number" name="minquantity" id="minquantity" value="{{$products->title}}">
+                                          <input class="form-control" type="number" name="minquantity" id="minquantity" value="{{$products->minquantity}}">
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -100,7 +100,7 @@
                                   <div class="row mb-3">
                                       <label for="tax" class="col-sm-2 col-form-label">Tax</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="number" name="tax" id="tax" value="{{$products->title}}">
+                                          <input class="form-control" type="number" name="tax" id="tax" value="{{$products->tax}}">
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -108,7 +108,7 @@
                                   <div class="row mb-3">
                                       <label for="detail" class="col-sm-2 col-form-label">Detail</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="text" name="detail" id="detail" value="{{$products->title}}">
+                                          <textarea id="elm1" name="detail" value="{!! $products->detail !!}"></textarea>
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -152,4 +152,12 @@
   </div>
   <!-- end main content-->
 
+@endsection
+
+@section('js')
+  <!--tinymce js-->
+  <script src="{{asset('back/')}}/assets/libs/tinymce/tinymce.min.js"></script>
+  <!-- init js -->
+  <script src="{{asset('back/')}}/assets/js/pages/form-editor.init.js"></script>
+  <script src="{{asset('back/')}}/assets/js/app.js"></script>
 @endsection

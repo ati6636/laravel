@@ -56,7 +56,7 @@
                                               <th style="width: 100px">{{$product->category_id}}</th>
                                               <th>{{$product->image}}</th>
                                               <td>{{$product->title}}</td>
-                                              <td style="width: 100px">{{$product->quantitiy}}</td>
+                                              <td style="width: 100px">{{$product->quantity}}</td>
                                               <td style="width: 100px">{{$product->price}}</td>
                                               <td style="width: 100px">{{$product->status}}</td>
                                               <td style="width: 100px">

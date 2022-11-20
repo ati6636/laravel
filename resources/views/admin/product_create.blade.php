@@ -82,9 +82,9 @@
                                   <!-- end row -->
 
                                   <div class="row mb-3">
-                                      <label for="quantitiy" class="col-sm-2 col-form-label">Quantitiy</label>
+                                      <label for="quantity" class="col-sm-2 col-form-label">Quantitiy</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="number" value="1" name="quantitiy" id="quantitiy">
+                                          <input class="form-control" type="number" value="1" name="quantity" id="quantity">
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -108,7 +108,7 @@
                                   <div class="row mb-3">
                                       <label for="detail" class="col-sm-2 col-form-label">Detail</label>
                                       <div class="col-sm-10">
-                                          <input class="form-control" type="text" name="detail" id="detail">
+                                          <textarea id="elm1" name="detail"></textarea>
                                       </div>
                                   </div>
                                   <!-- end row -->
@@ -154,4 +154,12 @@
   </div>
   <!-- end main content-->
 
+@endsection
+
+@section('js')
+    <!--tinymce js-->
+    <script src="{{asset('back/')}}/assets/libs/tinymce/tinymce.min.js"></script>
+    <!-- init js -->
+    <script src="{{asset('back/')}}/assets/js/pages/form-editor.init.js"></script>
+    <script src="{{asset('back/')}}/assets/js/app.js"></script>
 @endsection
