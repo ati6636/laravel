@@ -36,6 +36,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{route('admin_products')}}" class=" waves-effect">
+                        <i class="ri-calendar-2-line"></i>
+                        <span>Product</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

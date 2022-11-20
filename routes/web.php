@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,15 @@ Route::prefix('admin')->middleware('auth')->group (function(){
     Route::post('update/{id}',[CategoryController::class,'update'])->name('admin_category_update');
     Route::get('delete/{id}',[CategoryController::class,'destroy'])->name('admin_category_delete');
     Route::get('show',[CategoryController::class,'show'])->name('admin_category_show');
-
     });
 
+  Route::prefix('product')->group(function(){
+    Route::get('/',[ProductController::class,'index'])->name('admin_products');
+    Route::get('create',[ProductController::class,'create'])->name('admin_product_create');
+    Route::post('store',[ProductController::class,'store'])->name('admin_product_store');
+    Route::get('edit/{id}',[ProductController::class,'edit'])->name('admin_product_edit');
+    Route::post('update/{id}',[ProductController::class,'update'])->name('admin_product_update');
+    Route::get('delete/{id}',[ProductController::class,'destroy'])->name('admin_product_delete');
+    Route::get('show',[ProductController::class,'show'])->name('admin_product_show');
+  });
 });

@@ -13,7 +13,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -25,11 +25,11 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function add()
     {
-        $categories = DB::table('categories')->where('parent_id',0)->get();
+        $categories = Category::all();
 
         return view('admin.category_add', ['categories' => $categories]);
     }
@@ -37,31 +37,22 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(Request  $request)
     {
-         DB::table('categories')->insert([
-            'parent_id' => $request->parent_id,
-            'title' => $request->title,
-            'keywords' => $request->keywords,
-            'description' => $request->description,
-            'slug' => Str::slug($request->title),
-            'status' => $request->status,
-            'created_at' => now(),
-        ]);
-        return redirect()->route('admin_category');
-    }
+        $categories = new Category;
+        $categories->parent_id = $request->parent_id;
+        $categories->title = $request->title;
+        $categories->keywords = $request->keywords;
+        $categories->description = $request->description;
+        $categories->slug = Str::slug($request->title);
+        $categories->status = $request->status;
+        $categories->created_at = now();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $categories->save();
+
+        return redirect()->route('admin_category');
     }
 
     /**
@@ -79,7 +70,7 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Category $category , $id)
     {
@@ -94,7 +85,7 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Category $category ,$id)
     {
@@ -116,7 +107,7 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $category,$id)
     {
