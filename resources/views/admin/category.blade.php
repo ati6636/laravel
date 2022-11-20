@@ -58,7 +58,7 @@
                                               <td>{{$category->status}}</td>
                                               <td>{{$category->created_at}}</td>
                                               <td style="width: 100px">
-                                                  <a class="btn btn-outline-secondary btn-sm edit" title="Edit" href="{{route('admin_category_update', $category->id)}}">
+                                                  <a class="btn btn-outline-secondary btn-sm edit" title="Edit" href="{{route('admin_category_edit', $category->id)}}">
                                                       <i class="fas fa-pencil-alt"></i>
                                                   </a>
                                               </td>

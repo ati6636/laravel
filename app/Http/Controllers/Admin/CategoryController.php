@@ -81,9 +81,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category , $id)
     {
-        //
+        $categoryEdit = Category::find($id);
+        $categories = DB::table('categories')->get();
+
+        return view('admin.category_edit', ['categoryEdit' =>$categoryEdit ,'categories' => $categories ]);
     }
 
     /**
@@ -93,9 +96,20 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category ,$id)
     {
-        //
+        $update = Category::find($id);
+
+        $update->parent_id = $request->parent_id;
+        $update->title = $request->title;
+        $update->keywords = $request->keywords;
+        $update->description = $request->description;
+        $update->slug = Str::slug($request->title);
+        $update->status = $request->status;
+        $update->updated_at = now();
+
+        $update->save();
+        return redirect()->route('admin_category');
     }
 
     /**
