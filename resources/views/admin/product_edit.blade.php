@@ -34,7 +34,7 @@
                   <div class="col-12">
                       <div class="card">
                           <div class="card-body">
-                              <form action="{{route('admin_product_update', $products->id)}}" method="post">
+                              <form action="{{route('admin_product_update', $products->id)}}" method="post" enctype="multipart/form-data">
                                   @csrf
 
                                   <div class="row mb-3">
@@ -125,9 +125,12 @@
                                   <!-- end row -->
 
                                   <div class="row mb-3">
-                                      <label for="example-file-input" class="col-sm-2 col-form-label">Image</label>
+                                      <label for="image" class="col-sm-2 col-form-label">Image</label>
                                       <div class="col-sm-10">
-                                          <input type="file" class="form-control form-control-color w-100" id="example-file-input">
+                                          @if($products->image)
+                                              <img src="{{ asset( Storage::url($products->image )) }}" height="30" alt="">
+                                          @endif
+                                          <input type="file" class="form-control form-control-color w-100" id="image" name="image">
                                       </div>
                                   </div>
                                   <!-- end row -->

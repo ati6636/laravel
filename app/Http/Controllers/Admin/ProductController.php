@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -42,10 +43,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $products = new Product;
+
         $products->title = $request->title;
         $products->keywords = $request->keywords;
         $products->description = $request->description;
-        $products->image = $request->image;
+        $products->image = Storage::putFile('/images/',$request->file('image'));
         $products->category_id = $request->category_id;
         $products->user_id = Auth::id();
         $products->price = $request->price;
@@ -102,7 +104,7 @@ class ProductController extends Controller
         $update->title = $request->title;
         $update->keywords = $request->keywords;
         $update->description = $request->description;
-        $update->image = $request->image;
+        $update->image = Storage::putFile('/images/',$request->file('image'));
         $update->category_id = $request->category_id;
         $update->user_id = Auth::id();
         $update->price = $request->price;

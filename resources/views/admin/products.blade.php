@@ -52,9 +52,13 @@
                                       <tbody>
                                         @foreach ($products as $product)
                                           <tr>
-                                              <th style="width: 100px">{{$product->id}}</th>
-                                              <th style="width: 100px">{{$product->category_id}}</th>
-                                              <th>{{$product->image}}</th>
+                                              <td style="width: 50px">{{$product->id}}</td>
+                                              <td style="width: 50px">{{$product->category_id}}</td>
+                                              <td style="width: 100px">
+                                                  @if($product->image)
+                                                      <img src="{{ asset( Storage::url($product->image )) }}" height="30" alt="">
+                                                  @endif
+                                              </td>
                                               <td>{{$product->title}}</td>
                                               <td style="width: 100px">{{$product->quantity}}</td>
                                               <td style="width: 100px">{{$product->price}}</td>
@@ -90,12 +94,6 @@
 
 @endsection
 
-@section('css')
-  <!-- DataTables -->
-  <link href="{{asset('back/')}}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-  <link href="{{asset('back/')}}/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-  <link href="{{asset('back/')}}/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-@endsection
 
 @section('js')
     <!-- Buttons examples -->

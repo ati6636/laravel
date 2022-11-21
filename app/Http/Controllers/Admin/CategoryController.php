@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -42,10 +43,12 @@ class CategoryController extends Controller
     public function create(Request  $request)
     {
         $categories = new Category;
+
         $categories->parent_id = $request->parent_id;
         $categories->title = $request->title;
         $categories->keywords = $request->keywords;
         $categories->description = $request->description;
+        $categories->image = Storage::putFile('/images/',$request->file('image'));
         $categories->slug = Str::slug($request->title);
         $categories->status = $request->status;
         $categories->created_at = now();
@@ -95,6 +98,7 @@ class CategoryController extends Controller
         $update->title = $request->title;
         $update->keywords = $request->keywords;
         $update->description = $request->description;
+        $update->image = Storage::putFile('/images/',$request->file('image'));
         $update->slug = Str::slug($request->title);
         $update->status = $request->status;
         $update->updated_at = now();

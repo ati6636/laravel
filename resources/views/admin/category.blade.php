@@ -51,7 +51,11 @@
                                       <tbody>
                                         @foreach ($categories as $category)
                                           <tr>
-                                              <th>{{$category->image}}</th>
+                                              <td style="width: 100px">
+                                                  @if($category->image)
+                                                      <img src="{{ asset( Storage::url($category->image )) }}" height="50" alt="">
+                                                  @endif
+                                              </td>
                                               <td>{{$category->title}}</td>
                                               <td>{{$category->keywords}}</td>
                                               <td>{{$category->description}}</td>
