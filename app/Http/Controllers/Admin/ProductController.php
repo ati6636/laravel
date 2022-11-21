@@ -104,7 +104,9 @@ class ProductController extends Controller
         $update->title = $request->title;
         $update->keywords = $request->keywords;
         $update->description = $request->description;
-        $update->image = Storage::putFile('/images/',$request->file('image'));
+        if ($request->hasFile('image')) {
+            $update->image = $request->image->storeAs('/uploads/', $request->image->getClientOriginalName());
+        }
         $update->category_id = $request->category_id;
         $update->user_id = Auth::id();
         $update->price = $request->price;

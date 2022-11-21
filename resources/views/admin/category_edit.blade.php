@@ -87,6 +87,9 @@
                                   <div class="row mb-3">
                                       <label for="image" class="col-sm-2 col-form-label">Image</label>
                                       <div class="col-sm-10">
+                                          @if($categoryEdit->image)
+                                              <img src="{{ asset( Storage::url($categoryEdit->image )) }}" height="30" alt="">
+                                          @endif
                                           <input type="file" class="form-control form-control-color w-100" id="image" name="image">
                                       </div>
                                   </div>
@@ -97,7 +100,6 @@
                                               <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Update Category</button>
                                           </div>
                                       </div>
-                                  </div>
 
                               </form>
 

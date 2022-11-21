@@ -98,7 +98,9 @@ class CategoryController extends Controller
         $update->title = $request->title;
         $update->keywords = $request->keywords;
         $update->description = $request->description;
-        $update->image = Storage::putFile('/images/',$request->file('image'));
+        if ($request->hasFile('image')) {
+            $update->image = $request->image->storeAs('/uploads/', $request->image->getClientOriginalName());
+        }
         $update->slug = Str::slug($request->title);
         $update->status = $request->status;
         $update->updated_at = now();
