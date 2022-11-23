@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -71,5 +72,13 @@ Route::prefix('admin')->middleware('auth')->group (function(){
     Route::post('update/{id}',[ProductController::class,'update'])->name('admin_product_update');
     Route::get('delete/{id}',[ProductController::class,'destroy'])->name('admin_product_delete');
     Route::get('show',[ProductController::class,'show'])->name('admin_product_show');
-  });
+    });
+
+  Route::prefix('image')->group(function(){
+    Route::get('create/{id}',[ImageController::class,'create'])->name('admin_image_create');
+    Route::post('store/{id}',[ImageController::class,'store'])->name('admin_image_store');
+    Route::get('delete/{id}/{product_id}',[ImageController::class,'destroy'])->name('admin_image_delete');
+    Route::get('show',[ImageController::class,'show'])->name('admin_image_show');
+    });
+
 });

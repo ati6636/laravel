@@ -41,6 +41,7 @@
                                               <th>Id</th>
                                               <th>Category</th>
                                               <th>Image</th>
+                                              <th>Image Gallery</th>
                                               <th>Title</th>
                                               <th>Quantity</th>
                                               <th>Price</th>
@@ -59,6 +60,11 @@
                                                       <img src="{{ asset( Storage::url($product->image )) }}" height="30" alt="">
                                                   @endif
                                               </td>
+                                              <td style="width: 100px">
+                                                  <a href="{{route('admin_image_create', $product->id)}}">
+                                                      <i class="ri-image-add-fill"></i>
+                                                  </a>
+                                              </td>
                                               <td>{{$product->title}}</td>
                                               <td style="width: 100px">{{$product->quantity}}</td>
                                               <td style="width: 100px">{{$product->price}}</td>
@@ -69,7 +75,7 @@
                                                   </a>
                                               </td>
                                               <td style="width: 100px">
-                                                  <a class="btn btn-outline-secondary btn-sm delete" title="Delete" href="{{route('admin_product_delete', $product->id)}}" onclick="return confirm('Delete ! Are you sure')">
+                                                  <a class="btn btn-outline-secondary btn-sm delete" title="Delete" href="{{route('admin_product_delete', $product->id)}}" onclick= "return confirm('Delete ! Are you sure')">
                                                       <i class="fas fa-trash"></i>
                                                   </a>
                                               </td>
@@ -94,6 +100,11 @@
 
 @endsection
 
+@section('css')
+
+@endsection
+<!-- Sweet Alert-->
+<link href="{{asset('back/')}}/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
 @section('js')
     <!-- Buttons examples -->
@@ -115,6 +126,13 @@
 
     <!-- Datatable init js -->
     <script src="{{asset('back/')}}/assets/js/pages/datatables.init.js"></script>
-
     <script src="{{asset('back/')}}/assets/js/app.js"></script>
+
+    <!-- Sweet Alerts js -->
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- Sweet alert init js-->
+    <script src="{{asset('back/')}}/assets/js/pages/sweet-alerts.init.js"></script>
+    <script src="{{asset('back/')}}/assets/js/app.js"></script>
+
 @endsection
