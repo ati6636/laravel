@@ -113,12 +113,7 @@
     <script src="{{asset('back/')}}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="{{asset('back/')}}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
 
-    <!-- Responsive examples -->
-    <script src="{{asset('back/')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{asset('back/')}}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-
     <!-- Datatable init js -->
     <script src="{{asset('back/')}}/assets/js/pages/datatables.init.js"></script>
 
-    <script src="{{asset('back/')}}/assets/js/app.js"></script>
 @endsection

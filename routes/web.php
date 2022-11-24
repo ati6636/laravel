@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -79,6 +80,12 @@ Route::prefix('admin')->middleware('auth')->group (function(){
     Route::post('store/{id}',[ImageController::class,'store'])->name('admin_image_store');
     Route::get('delete/{id}/{product_id}',[ImageController::class,'destroy'])->name('admin_image_delete');
     Route::get('show',[ImageController::class,'show'])->name('admin_image_show');
-    });
+});
+
+  Route::prefix('setting')->group(function(){
+    Route::get('/',[SettingController::class,'index'])->name('admin_settings');
+    Route::post('update/{id}',[SettingController::class,'update'])->name('admin_setting_update');
+
+  });
 
 });
