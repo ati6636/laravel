@@ -38,11 +38,13 @@
                                   @csrf
 
                                   <div class="row mb-3">
-                                      <label class="col-sm-2 col-form-label">Parent</label>
+                                      <label class="col-sm-2 col-form-label">Category</label>
                                       <div class="col-sm-10">
                                           <select class="form-select" name="category_id" aria-label="Default select example">
                                               @foreach($products as $product)
-                                                  <option value="{{$product->id}}">{{$product->title}}</option>
+                                                  <option value="{{$product->id}}">
+                                                      {{ \App\Http\Controllers\admin\CategoryController::getParentsTree($product, $product->title) }}
+                                                  </option>
                                               @endforeach
                                           </select>
                                       </div>
@@ -144,8 +146,6 @@
                           </div>
                   </div> <!-- end col -->
               </div>
-
-
 
           </div> <!-- container-fluid -->
       </div>

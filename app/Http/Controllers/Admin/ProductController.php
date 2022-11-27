@@ -12,34 +12,18 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function index()
     {
         $products = Product::all();
-        return view('admin.products',['products' => $products]);
+        return view('admin.products',compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function create()
     {
-        $products = Category::all();
-        return view('admin.product_create',['products' => $products]);
+        $products = $categories = Category::with('children')->get();
+        return view('admin.product_create',compact('products'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(Request $request)
     {
         $products = new Product;
@@ -64,39 +48,19 @@ class ProductController extends Controller
         return redirect()->route('admin_products');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response|string
-     */
-
     public function show(Product $product)
     {
         return ('show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function edit(Product $product , $id)
     {
-        $products = Product::find($id);
-        $categories = Category::all();
+        $products = Product::find($id);//data
+        $categories = Category::with('children')->get(); //datalist
 
-        return view('admin.product_edit', ['products' =>$products ,'categories' => $categories ]);
+        return view('admin.product_edit', compact('products', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(Request $request, Product $product, $id)
     {
         $update = Product::find($id);
@@ -122,12 +86,6 @@ class ProductController extends Controller
         return redirect()->route('admin_products');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy(Product $product, $id)
     {
         $delete = Product::find($id);

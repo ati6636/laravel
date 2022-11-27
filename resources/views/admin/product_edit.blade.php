@@ -38,11 +38,13 @@
                                   @csrf
 
                                   <div class="row mb-3">
-                                      <label class="col-sm-2 col-form-label">Parent</label>
+                                      <label class="col-sm-2 col-form-label">Category</label>
                                       <div class="col-sm-10">
                                           <select class="form-select" name="category_id" aria-label="Default select example">
                                               @foreach($categories as $category)
-                                                  <option value="{{$category->id}}" @if ($category->id == $products->category_id) selected="selected" @endif>{{$category->title}}</option>
+                                                  <option value="{{$category->id}}" @if ($category->id == $products->category_id) selected="selected" @endif>
+                                                      {{ \App\Http\Controllers\admin\CategoryController::getParentsTree($category, $category->title) }}
+                                                  </option>
                                               @endforeach
                                           </select>
                                       </div>

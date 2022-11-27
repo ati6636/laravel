@@ -54,7 +54,9 @@
                                         @foreach ($products as $product)
                                           <tr>
                                               <td style="width: 50px">{{$product->id}}</td>
-                                              <td style="width: 50px">{{$product->category->title}}</td>
+                                              <td style="width: 50px">
+                                                  {{ \App\Http\Controllers\admin\CategoryController::getParentsTree($product->category, $product->category->title) }}
+                                              </td>
                                               <td style="width: 100px">
                                                   @if($product->image)
                                                       <img src="{{ asset( Storage::url($product->image )) }}" height="30" alt="">
