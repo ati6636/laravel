@@ -42,7 +42,7 @@
                                       <div class="col-sm-10">
                                           <select class="form-select" name="category_id" aria-label="Default select example">
                                               @foreach($categories as $category)
-                                                  <option value="{{$category->id}}" @if ($category->id == $products->id) selected="selected" @endif>{{$category->title}}</option>
+                                                  <option value="{{$category->id}}" @if ($category->id == $products->category_id) selected="selected" @endif>{{$category->title}}</option>
                                               @endforeach
                                           </select>
                                       </div>
@@ -145,8 +145,6 @@
                           </div>
                   </div> <!-- end col -->
               </div>
-
-
 
           </div> <!-- container-fluid -->
       </div>

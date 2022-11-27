@@ -38,14 +38,13 @@
                                   <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                       <thead>
                                       <tr>
-                                              <th>Image</th>
-                                              <th>Title</th>
-                                              <th>Keywords</th>
-                                              <th>Description</th>
-                                              <th>Status</th>
-                                              <th>Created_At</th>
-                                              <th>Edit</th>
-                                              <th>Delete</th>
+                                          <th>Image</th>
+                                          <th>Parent</th>
+                                          <th>Title</th>
+                                          <th>Status</th>
+                                          <th>Created_At</th>
+                                          <th>Edit</th>
+                                          <th>Delete</th>
                                           </tr>
                                       </thead>
                                       <tbody>
@@ -56,9 +55,10 @@
                                                       <img src="{{ asset( Storage::url($category->image )) }}" height="50" alt="">
                                                   @endif
                                               </td>
+                                              <td>
+                                                  {{ \App\Http\Controllers\admin\CategoryController::getParentsTree($category, $category->title) }}
+                                              </td>
                                               <td>{{$category->title}}</td>
-                                              <td>{{$category->keywords}}</td>
-                                              <td>{{$category->description}}</td>
                                               <td>{{$category->status}}</td>
                                               <td>{{$category->created_at}}</td>
                                               <td style="width: 100px">

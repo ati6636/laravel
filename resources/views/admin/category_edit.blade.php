@@ -43,7 +43,9 @@
                                           <select class="form-select" name="parent_id" aria-label="Default select example">
                                               <option value="0">Main Category</option>
                                               @foreach($categories as $category)
-                                                  <option value="{{$category->id}}" @if ($category->id == $categoryEdit->parent_id) selected="selected" @endif>{{$category->title}}</option>
+                                                  <option value="{{$category->id}}" @if ($category->id == $categoryEdit->parent_id) selected="selected" @endif>
+                                                      {{ \App\Http\Controllers\admin\CategoryController::getParentsTree($category, $category->title) }}
+                                                  </option>
                                               @endforeach
                                           </select>
                                       </div>
@@ -106,8 +108,6 @@
                           </div>
                   </div> <!-- end col -->
               </div>
-
-
 
           </div> <!-- container-fluid -->
       </div>

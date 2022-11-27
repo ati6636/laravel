@@ -5,24 +5,37 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    protected $appends = [ 'getParentsTree' ];
+
+    public static function getParentsTree($category, $title)
+    {
+        if($category->parent_id == 0)
+        {
+            return $title;
+        }
+        $parent = Category::find($category->parent_id);
+        $title = $parent->title . ' > ' . $title;
+
+        return CategoryController::getParentsTree($parent, $title);
+    }
+
     public function index()
     {
-      $categories = DB::table('categories')->get();
+      $categories = Category::with('children')->get();
 
-       return view('admin.category', ['categories' => $categories]);
+       return view('admin.category', compact('categories'));
     }
 
     public function add()
     {
-        $categories = Category::all();
+        $categories = Category::with('children')->get();
 
-        return view('admin.category_add', ['categories' => $categories]);
+        return view('admin.category_add', compact('categories'));
     }
 
     public function create(Request $request)
@@ -45,17 +58,12 @@ class CategoryController extends Controller
         return redirect()->route('admin_category');
     }
 
-    public function show(Category $category)
-    {
-        //
-    }
-
     public function edit(Category $category , $id)
     {
         $categoryEdit = Category::find($id);
-        $categories = DB::table('categories')->get();
+        $categories = Category::with('children')->get();
 
-        return view('admin.category_edit', ['categoryEdit' =>$categoryEdit ,'categories' => $categories ]);
+        return view('admin.category_edit', compact('categoryEdit', 'categories'));
     }
 
     public function update(Request $request, Category $category ,$id)

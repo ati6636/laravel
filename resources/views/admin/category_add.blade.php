@@ -43,7 +43,9 @@
                                           <select class="form-select" name="parent_id" aria-label="Default select example">
                                               <option value="0" selected="selected">Main Category</option>
                                               @foreach($categories as $category)
-                                                  <option value="{{$category->id}}">{{$category->title}}</option>
+                                                  <option value="{{$category->id}}">
+                                                      {{ \App\Http\Controllers\admin\CategoryController::getParentsTree($category, $category->title) }}
+                                                  </option>
                                               @endforeach
                                           </select>
                                       </div>
@@ -98,15 +100,11 @@
                                               <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Add Category</button>
                                           </div>
                                       </div>
-                                  </div>
-
                               </form>
 
                           </div>
                   </div> <!-- end col -->
               </div>
-
-
 
           </div> <!-- container-fluid -->
       </div>
