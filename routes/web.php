@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -45,6 +46,11 @@ Route::get('/referances',[HomeController::class,'referances'])->name('referances
 Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('logout', [AdminHomeController::class,'logout'])->name('logout');
+
+Route::prefix('myaccount')->namespace('myaccount')->middleware('auth')->group (function() {
+    Route::get('/', [UserController::class, 'index'])->name('myprofile');
+});
+
 /*
 |--------------------------------------------------------------------------
 |

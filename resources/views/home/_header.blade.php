@@ -78,7 +78,7 @@
                         <a href="/login" class="text-uppercase">Login</a> / <a href="/register" class="text-uppercase">Join</a>
                         @endguest
                         <ul class="custom-menu">
-                            <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                            <li><a href="{{route('myprofile')}}"><i class="fa fa-user-o"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
                             <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
                             <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>

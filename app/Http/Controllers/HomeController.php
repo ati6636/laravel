@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        return view('home.index',compact('setting'));
+        return view('home.index',['setting' => $setting, 'page'=> 'home']);
     }
 
     public function referances()
