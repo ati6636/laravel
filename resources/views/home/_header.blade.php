@@ -1,3 +1,6 @@
+@php
+    $setting = \App\Http\Controllers\HomeController::getSetting()
+@endphp
 <!-- HEADER -->
 <header>
     <!-- top Header -->
@@ -39,7 +42,7 @@
             <div class="pull-left">
                 <!-- Logo -->
                 <div class="header-logo">
-                    <a class="logo" href="#">
+                    <a class="logo" href="{{route('home')}}">
                         <img src="{{asset('front/')}}/img/logo.png" alt="">
                     </a>
                 </div>
@@ -63,20 +66,23 @@
                 <ul class="header-btns">
                     <!-- Account -->
                     <li class="header-account dropdown default-dropdown">
+                        @auth
                         <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                             <div class="header-btns-icon">
                                 <i class="fa fa-user-o"></i>
                             </div>
-                            <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
+                            <strong class="text-uppercase">{{\Illuminate\Support\Facades\Auth::user()->name}}<i class="fa fa-caret-down"></i></strong>
                         </div>
-                        <a href="#" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+                        @endauth
+                        @guest
+                        <a href="/login" class="text-uppercase">Login</a> / <a href="/register" class="text-uppercase">Join</a>
+                        @endguest
                         <ul class="custom-menu">
                             <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
                             <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
                             <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
-                            <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
-                            <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+                            <li><a href="{{route('logout')}}"><i class="fa fa-user-plus"></i> Logout</a></li>
                         </ul>
                     </li>
                     <!-- /Account -->

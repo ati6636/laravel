@@ -40,7 +40,11 @@ Routes
 |--------------------------------------------------------------------------
 */
 Route::get('/',[HomeController::class,'index'])->name('home');
-
+Route::get('/about',[HomeController::class,'about'])->name('about');
+Route::get('/referances',[HomeController::class,'referances'])->name('referances');
+Route::get('/faq',[HomeController::class,'faq'])->name('faq');
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+Route::get('logout', [AdminHomeController::class,'logout'])->name('logout');
 /*
 |--------------------------------------------------------------------------
 |
@@ -55,7 +59,8 @@ Route::prefix('admin')->middleware('auth')->group (function(){
   Route::post('login', [AdminHomeController::class,'loginPost'])->name('admin.login.post');
   Route::get('logout', [AdminHomeController::class,'logout'])->name('admin.logout');
 
-  Route::prefix('category')->group(function(){
+
+    Route::prefix('category')->group(function(){
     Route::get('/',[CategoryController::class,'index'])->name('admin_category');
     Route::get('add',[CategoryController::class,'add'])->name('admin_category_add');
     Route::post('create',[CategoryController::class,'create'])->name('admin_category_create');

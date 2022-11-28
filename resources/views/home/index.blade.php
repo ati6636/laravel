@@ -1,10 +1,10 @@
 @extends('layouts.home')
 
-@section('title','Laravel E-Ticaret Sitesi')
+@section('title',$setting->title)
 
-@section('description','Türkiyenin En Güvenilir E-Ticaret Sitesi')
+@section('description',$setting->description)
 
-@section('keywords','Yazıcı - Satış - Epson - Canon - Brother - Teknik Destek')
+@section('keywords',$setting->keywords)
 
 @section('author','Sedat İŞLEK')
 

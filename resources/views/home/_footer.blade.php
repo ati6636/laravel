@@ -1,4 +1,8 @@
-<!-- FOOTER -->
+@php
+    $setting = \App\Http\Controllers\HomeController::getSetting()
+@endphp
+
+    <!-- FOOTER -->
 <footer id="footer" class="section section-grey">
     <!-- container -->
     <div class="container">
@@ -9,21 +13,25 @@
                 <div class="footer">
                     <!-- footer logo -->
                     <div class="footer-logo">
-                        <a class="logo" href="#">
+                        <a class="logo" href="{{route('home')}}">
                             <img src="{{asset('front/')}}/img/logo.png" alt="">
                         </a>
                     </div>
                     <!-- /footer logo -->
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+                    <h4>Address</h4>
+                    {{$setting->company}}<br>
+                    {{$setting->address}}<br>
+                    <strong>Phone :</strong> {{$setting->phone}}<br>
+                    <strong>Email :</strong> {{$setting->email}}<br>
+                    <strong>Fax :</strong> {{$setting->fax}}<br>
 
                     <!-- footer social -->
                     <ul class="footer-social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        @if($setting->facebook !=null) <li><a href="{{ $setting->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li> @endif
+                        @if($setting->twitter !=null)<li><a href="{{$setting->twitter}}" target="_blank"><i class="fa fa-twitter"></i></a></li> @endif
+                        @if($setting->instagram !=null)<li><a href="{{$setting->instagram}}" target="_blank"><i class="fa fa-instagram"></i></a></li> @endif
+                        @if($setting->youtube !=null)<li><a href="{{$setting->youtube}}" target="_blank"><i class="fa fa-youtube"></i></a></li> @endif
                     </ul>
                     <!-- /footer social -->
                 </div>
@@ -39,7 +47,7 @@
                         <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Compare</a></li>
                         <li><a href="#">Checkout</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{{route('login')}}">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,7 +60,7 @@
                 <div class="footer">
                     <h3 class="footer-header">Customer Service</h3>
                     <ul class="list-links">
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="{{route('about')}}">About Us</a></li>
                         <li><a href="#">Shiping & Return</a></li>
                         <li><a href="#">Shiping Guide</a></li>
                         <li><a href="#">FAQ</a></li>
@@ -86,7 +94,7 @@
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>
                         document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </script> All rights reserved | {{ $setting->company }} <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://fibrika.com.tr" target="_blank">fibrika</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </div>
                 <!-- /footer copyright -->
