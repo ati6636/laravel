@@ -218,7 +218,7 @@
                                       <div class="row mb-3">
                                           <label for="aboutus" class="col-sm-2 col-form-label">About Us</label>
                                           <div class="col-sm-10">
-                                              <textarea id="elm1" name="aboutus" value="{{$settings->aboutus}}"></textarea>
+                                              <textarea id="elm1" name="aboutus" value="{{$settings->aboutus}}">{!! $settings->aboutus !!}</textarea>
                                           </div>
                                       </div>
                                       <!-- end row -->
@@ -229,7 +229,7 @@
                                       <div class="row mb-3">
                                           <label for="contact" class="col-sm-2 col-form-label">Contact</label>
                                           <div class="col-sm-10">
-                                              <textarea id="elm2" name="contact" value="{{$settings->contact}}"></textarea>
+                                              <textarea id="elm2" name="contact" value="{{$settings->contact}}">{!! $settings->contact !!}</textarea>
                                           </div>
                                       </div>
                                       <!-- end row -->
@@ -240,7 +240,7 @@
                                       <div class="row mb-3">
                                           <label for="referances" class="col-sm-2 col-form-label">Referances</label>
                                           <div class="col-sm-10">
-                                              <textarea id="elm3" name="referances" value="{{$settings->referances}}"></textarea>
+                                              <textarea id="elm3" name="referances" value="{{$settings->referances}}">{!! $settings->referances !!}</textarea>
                                           </div>
                                       </div>
                                       <!-- end row -->
@@ -251,7 +251,7 @@
                   </div>
                       <div class="card-body">
                           <div class="d-grid mb-3">
-                              <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Edit Settings</button>
+                              <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Update Settings</button>
                           </div>
                       </div>
                   </form>

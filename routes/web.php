@@ -66,7 +66,7 @@ Route::prefix('admin')->middleware('auth')->group (function(){
   Route::get('/', [AdminHomeController::class,'index'])->name('admin.home');
   Route::get('login', [AdminHomeController::class,'login'])->name('admin.login');
   Route::post('login', [AdminHomeController::class,'loginPost'])->name('admin.login.post');
-  Route::get('logout', [AdminHomeController::class,'logout'])->name('logout');
+  Route::get('logout', [AdminHomeController::class,'logout'])->name('admin.logout');
 
 
     Route::prefix('category')->group(function(){

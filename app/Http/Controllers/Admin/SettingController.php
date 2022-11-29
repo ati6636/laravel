@@ -22,7 +22,7 @@ class SettingController extends Controller
         return view('admin.setting_edit', compact('settings'));
     }
 
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, Setting $setting,)
     {
         $id = $request->id;
 
