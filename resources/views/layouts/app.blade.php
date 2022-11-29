@@ -17,18 +17,45 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <x-jet-banner />
+    <x-jet-banner />
+
+    <div class="min-h-screen bg-gray-100 ">
 
 
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                        {{ $header }}
+                    </h2>
+                </div>
+            </header>
+        @endif
+        <div class="py-6">
+            <div class="mx-auto sm:px-6 lg:px-8">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </div>
+                @endif
 
-            <!-- Page Content -->
-            <main>
+                @if(session("success"))
+                    <div class="alert alert-success">
+                        <i class="fa fa-check"></i>
+                        {{session("success")}}
+                    </div>
+                @endif
+
                 {{ $slot }}
-            </main>
+            </div>
         </div>
+    </div>
 
-        @stack('modals')
+    @stack('modals')
 
-        @livewireScripts
+    @livewireScripts
     </body>
 </html>

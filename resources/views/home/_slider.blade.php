@@ -1,5 +1,5 @@
 <!-- HOME -->
-<div id="home">
+<div id="home" >
     <!-- container -->
     <div class="container">
         <!-- home wrap -->

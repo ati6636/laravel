@@ -62,8 +62,6 @@
     </div>
     <!-- /NAVIGATION -->
 
-    @include('home._slider')
-
     @yield('content')
 
     @include('home._footer')

@@ -45,10 +45,13 @@ Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/referances',[HomeController::class,'referances'])->name('referances');
 Route::get('/faq',[HomeController::class,'faq'])->name('faq');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
-Route::get('logout', [AdminHomeController::class,'logout'])->name('logout');
 
 Route::prefix('myaccount')->namespace('myaccount')->middleware('auth')->group (function() {
     Route::get('/', [UserController::class, 'index'])->name('myprofile');
+});
+
+Route::prefix('user')->namespace('userprofile')->middleware('auth')->group (function() {
+    Route::get('/profile', [UserController::class, 'index'])->name('userprofile');
 });
 
 /*
@@ -63,7 +66,7 @@ Route::prefix('admin')->middleware('auth')->group (function(){
   Route::get('/', [AdminHomeController::class,'index'])->name('admin.home');
   Route::get('login', [AdminHomeController::class,'login'])->name('admin.login');
   Route::post('login', [AdminHomeController::class,'loginPost'])->name('admin.login.post');
-  Route::get('logout', [AdminHomeController::class,'logout'])->name('admin.logout');
+  Route::get('logout', [AdminHomeController::class,'logout'])->name('logout');
 
 
     Route::prefix('category')->group(function(){

@@ -50,7 +50,7 @@ class HomeController extends Controller
         {
             $credentials = $request->only('email', 'password');
         }
-        return view('home.login');
+        return view('home');
     }
 
 }

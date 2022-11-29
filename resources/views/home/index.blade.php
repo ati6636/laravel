@@ -10,7 +10,9 @@
 
 @section('content')
 
-  <!-- section -->
+    @include('home._slider')
+
+    <!-- section -->
   <div class="section">
       <!-- container -->
       <div class="container">
