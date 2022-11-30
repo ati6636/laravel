@@ -21,7 +21,7 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item active"><a href="javascript: void(0);">Message List</a></li>
-                                    <li class="breadcrumb-item"><a href="{{route('admin_message_edit')}}">Message Edit</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin_message_edit')}}">Message Detail</a></li>
                                 </ol>
                             </div>
 
@@ -34,7 +34,7 @@
                   <div class="col-lg-12">
                       <div class="card">
                           <div>
-                              @include('home.message');
+                              @include('home.message')
                           </div>
                           <div class="card-body">
                               <div class="table-responsive">
@@ -62,7 +62,7 @@
                                               <td>{{$message->phone}}</td>
                                               <td>{{$message->subject}}</td>
                                               <td>{{$message->message}}</td>
-                                              <td>{{$message->note}}</td>
+                                              <td>{!! $message->note !!}</td>
                                               <td>{{$message->status}}</td>
 
                                               <td style="width: 100px">

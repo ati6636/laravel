@@ -19,15 +19,21 @@ class MessageController extends Controller
         //
     }
 
-    public function edit(Message $message, $id)
+    public function edit(Request $request, $id)
     {
-        $messages = Message::find($id);
-        return view('admin.message_edit',compact('messages'));
+        $data = Message::find($id);
+        $data->status = 'Read';
+        $data->save();
+        return view('admin.message_edit',compact('data'));
     }
 
-    public function update(Message $message, $id)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Message::find($id);
+        $data->note = $request->note;
+        $data->save();
+
+        return redirect()->route('admin_message')->with('success','Message Updated');
     }
 
     public function destroy($id)
