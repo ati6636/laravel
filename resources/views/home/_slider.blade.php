@@ -7,35 +7,17 @@
             <!-- home slick -->
             <div id="home-slick">
                 <!-- banner -->
-                <div class="banner banner-1">
-                    <img src="{{asset('front/')}}/img/banner01.jpg" alt="">
-                    <div class="banner-caption text-center">
-                        <h1>Bags sale</h1>
-                        <h3 class="white-color font-weak">Up to 50% Discount</h3>
-                        <button class="primary-btn">Shop Now</button>
+                @foreach($sliders as $slider)
+                    <div class="banner banner-1 {{ $loop->first ? 'active' : ' ' }}">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($slider->image)}}" style="height: 400px" alt="">
+                        <div class="banner-caption text-center ">
+                            <h3>{{$slider->title}}</h3>
+                            <h2 class="white-color font-weak">{{$slider->price}}</h2>
+                            <a href="{{route('product',['id' => $slider->id, 'slug' => $slider->slug])}}" class="primary-btn">Shop Now</a>
+                        </div>
                     </div>
-                </div>
-                <!-- /banner -->
-
-                <!-- banner -->
-                <div class="banner banner-1">
-                    <img src="{{asset('front/')}}/img/banner02.jpg" alt="">
-                    <div class="banner-caption">
-                        <h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
-                        <button class="primary-btn">Shop Now</button>
-                    </div>
-                </div>
-                <!-- /banner -->
-
-                <!-- banner -->
-                <div class="banner banner-1">
-                    <img src="{{asset('front/')}}/img/banner03.jpg" alt="">
-                    <div class="banner-caption">
-                        <h1 class="white-color">New Product <span>Collection</span></h1>
-                        <button class="primary-btn">Shop Now</button>
-                    </div>
-                </div>
-                <!-- /banner -->
+                    <!-- /banner -->
+                @endforeach
             </div>
             <!-- /home slick -->
         </div>
