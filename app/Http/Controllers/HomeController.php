@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -45,6 +47,19 @@ class HomeController extends Controller
     {
         $setting = Setting::first();
         return view('home.contact', compact('setting'));
+    }
+
+    public function sendmessage(Request $request)
+    {
+        $data = new Message();
+        $data->name = $request->name;
+        $data->email= $request->email;
+        $data->phone = $request->phone;
+        $data->subject = $request->subject;
+        $data->message = $request->message;
+        $data->save();
+
+        return redirect()->route('contact')->with('success', 'Mesajınız Kaydedildi. Teşekkür Ederiz.');
     }
 
     public function login()
